@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common-api/common-api.iml" filepath="$PROJECT_DIR$/common/common-api/common-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common-ext/common-ext.iml" filepath="$PROJECT_DIR$/common/common-ext/common-ext.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common-test/common-test.iml" filepath="$PROJECT_DIR$/common/common-test/common-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common-ws/common-ws.iml" filepath="$PROJECT_DIR$/common/common-ws/common-ws.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core.iml" filepath="$PROJECT_DIR$/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ext/ext.iml" filepath="$PROJECT_DIR$/ext/ext.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ext/ext-third/ext-third.iml" filepath="$PROJECT_DIR$/ext/ext-third/ext-third.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample-api/sample-api.iml" filepath="$PROJECT_DIR$/sample/sample-api/sample-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample-ws/sample-ws.iml" filepath="$PROJECT_DIR$/sample/sample-ws/sample-ws.iml" />
+    </modules>
+  </component>
+</project>
+
