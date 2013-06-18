@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>core</artifactId>
+		<groupId>fr.canal.vod</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+    <packaging>pom</packaging>
+    <groupId>fr.canal.vod</groupId>
+	<artifactId>ext</artifactId>
+	<name>ext</name>
+	
+	<modules>
+		<module>ext-third</module>
+	</modules>
+	
+	<properties>
+		<core.common.version>0.0.1-SNAPSHOT</core.common.version>
+	</properties>	
+    
+</project>

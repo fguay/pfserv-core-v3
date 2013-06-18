@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/util 
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
+       http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd
+       http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <import resource="classpath:common-beans.xml"/>
+  <import resource="classpath:third-beans.xml"/>
+
+  <context:component-scan base-package="fr.canal.vod.sample" />
+  
+  <util:properties id="bizProperties" location="classpath:sample.properties"/>
+
+  <bean id="ehCacheKeyGenerator" class="com.googlecode.ehcache.annotations.key.HashCodeCacheKeyGenerator">
+      <property name="includeMethod" value="true"/>
+  </bean>
+
+  <ehcache:annotation-driven cache-manager="ehCacheManager" create-missing-caches="true" default-cache-key-generator="ehCacheKeyGenerator"/>
+
+  <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"/>
+
+
+    <bean class="java.net.URI" id="dbUrl">
+        <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="org.postgresql.Driver"/>
+        <property name="jdbcUrl" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath()+ '?' + @dbUrl.getQuery()}"/>
+        <property name="user" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+        <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+        <property name="acquireIncrement" value="1"></property>
+        <property name="minPoolSize" value="5"></property>
+        <property name="maxPoolSize" value="50"></property>
+        <property name="acquireRetryAttempts" value="10"/>
+        <property name="preferredTestQuery" value="SELECT 1"/>
+        <property name="testConnectionOnCheckin" value="true"/>
+        <property name="testConnectionOnCheckout" value="false"/>
+        <property name="maxIdleTime" value="50"/>
+        <property name="idleConnectionTestPeriod" value="30"/>
+    </bean>
+
+    <bean id="mapper" class="org.dozer.spring.DozerBeanMapperFactoryBean">
+        <property name="mappingFiles"
+                  value="classpath*:/*mappings.xml"/>
+    </bean>
+
+    <jpa:repositories base-package="fr.canal.vod.sample.data.repo" />
+
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+        </property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="false" />
+                <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            </bean>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <!--  change this to 'verify' before running as a production app -->
+                <prop key="hibernate.hbm2ddl.auto">verfiy</prop>
+            </props>
+        </property>
+
+
+    </bean>
+
+
+</beans>
