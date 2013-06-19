@@ -13,19 +13,16 @@ import fr.canal.vod.test.EntityTestCase
 
 
 @RunWith(classOf[SpringJUnit4ClassRunner])
-@ContextConfiguration(locations = Array( "classpath:/sample-beans.xml", "classpath:/sample-beans-test.xml" ))
-@TransactionConfiguration(transactionManager="transactionManager", defaultRollback = true)
-class SampleManagerTest extends EntityTestCase{
+@ContextConfiguration(locations = Array("classpath:/sample-beans.xml", "classpath:/sample-beans-test.xml"))
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+class SampleManagerTest extends EntityTestCase {
 
   @Autowired
-   var sampleManager: SampleBiz = _
+  var sampleManager: SampleBiz = _
 
   @Test
-  def testSample(){
+  def testSample() {
     Assert.assertNotNull(sampleManager.sample("coucou"));
     Assert.assertNotNull(sampleManager.sample("root").getChildSample())
   }
-
-
-
 }

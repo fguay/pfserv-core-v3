@@ -13,6 +13,7 @@
 	<name>sample</name>
 	
 	<modules>
+        <module>sample-data</module>
 		<module>sample-api</module>
 		<module>sample-ws</module>
 	</modules>
