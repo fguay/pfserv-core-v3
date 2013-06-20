@@ -3,14 +3,14 @@ package fr.canal.vod.test
 import org.dbunit.DataSourceBasedDBTestCase
 import org.dbunit.database.{IDatabaseConnection, DatabaseConfig}
 import javax.sql.DataSource
-import org.junit.{Assert, After, Before}
+import org.junit.{Ignore, Assert, After, Before}
 import java.sql.{ResultSet, Statement}
 import org.dbunit.util.fileloader.FlatXmlDataFileLoader
 import org.dbunit.dataset.IDataSet
 import scala.collection.mutable
 import org.springframework.beans.factory.annotation.Autowired
 
-class EntityTestCase extends DataSourceBasedDBTestCase {
+abstract class EntityTestCase extends DataSourceBasedDBTestCase {
 
   @Autowired
   var dataSource: DataSource = _
@@ -65,7 +65,7 @@ class EntityTestCase extends DataSourceBasedDBTestCase {
   }
 
   def getDataSource() : DataSource = {
-    return dataSource
+    dataSource
   }
 
 }

@@ -1,4 +1,4 @@
-package fr.canal.vod.sample.test
+package fr.canal.vod.sample.biz
 
 import junit.framework.Assert
 
@@ -13,16 +13,16 @@ import fr.canal.vod.test.EntityTestCase
 
 
 @RunWith(classOf[SpringJUnit4ClassRunner])
-@ContextConfiguration(locations = Array("classpath:/sample-beans.xml", "classpath:/sample-beans-test.xml"))
+@ContextConfiguration(Array("classpath:sample-ws-beans.xml", "classpath:test-sample-ws-beans.xml"))
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-class SampleManagerTest extends EntityTestCase {
+class SampleBizTest extends EntityTestCase {
 
   @Autowired
-  var sampleManager: SampleBiz = _
+  var sampleBiz: SampleBiz = _
 
   @Test
   def testSample() {
-    Assert.assertNotNull(sampleManager.sample("coucou"));
-    Assert.assertNotNull(sampleManager.sample("root").getChildSample())
+    Assert.assertNotNull(sampleBiz.sample("coucou"));
+    Assert.assertNotNull(sampleBiz.sample("root").getChildSample())
   }
 }

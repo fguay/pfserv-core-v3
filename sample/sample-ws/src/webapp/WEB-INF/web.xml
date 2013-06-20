@@ -9,7 +9,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:sample-beans.xml
+            classpath:sample-ws-beans.xml
         </param-value>
     </context-param>
 

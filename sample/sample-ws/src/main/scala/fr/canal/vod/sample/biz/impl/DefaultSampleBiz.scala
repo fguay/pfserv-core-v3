@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.{Qualifier, Autowired}
 import fr.canal.vod.api.exception.TechnicalException
 import fr.canal.vod.api.sample.exception.SampleException
 import fr.canal.vod.api.sample.dto.Sample
-import fr.canal.vod.sample.data.repo.SampleRepository
+import fr.canal.vod.sample.data.repo.SampleEntityRepository
 import fr.canal.vod.sample.data.entity.SampleEntity
 import org.dozer.Mapper
 import org.springframework.transaction.annotation.Transactional
@@ -19,7 +19,7 @@ class DefaultSampleBiz() extends SampleBiz {
   var thirdManager : ThirdManager = _
 
   @Autowired
-  var sampleRepository : SampleRepository = _
+  var sampleRepository : SampleEntityRepository = _
 
   @Autowired
   var mapper: Mapper = _

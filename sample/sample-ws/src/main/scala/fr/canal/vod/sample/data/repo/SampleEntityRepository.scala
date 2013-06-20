@@ -7,7 +7,7 @@ import fr.canal.vod.api.sample.dto.Sample
 ;
 
 @Repository
-trait SampleRepository extends CrudRepository[SampleEntity, Integer] {
+trait SampleEntityRepository extends CrudRepository[SampleEntity, Integer] {
 
   def findByName(name: String) : SampleEntity
 
