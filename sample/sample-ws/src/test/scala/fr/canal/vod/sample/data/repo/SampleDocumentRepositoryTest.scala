@@ -6,7 +6,7 @@ import org.junit.{Test, Before, After}
 import org.springframework.test.context.ContextConfiguration
 import org.junit.runner.RunWith
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
-import junit.framework.Assert
+import org.junit.Assert
 import fr.canal.vod.sample.data.doc.SampleDocument
 import fr.canal.vod.sample.data.repo.SampleDocumentRepository
 
