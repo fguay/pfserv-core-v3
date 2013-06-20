@@ -11,3 +11,7 @@ target
 *.iml
 .idea
 .project
+
+# log files
+log.txt
+*.log
