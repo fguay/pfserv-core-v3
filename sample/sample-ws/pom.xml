@@ -1,16 +1,29 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>sample</artifactId>
-		<groupId>fr.canal.vod</groupId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>sample</artifactId>
+        <groupId>fr.canal.vod</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
     <packaging>war</packaging>
     <groupId>fr.canal.vod.sample</groupId>
-	<artifactId>sample-ws</artifactId>
-	<name>sample-ws</name>
+    <artifactId>sample-ws</artifactId>
+    <name>sample-ws</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webXml>src\main\webapp\WEB-INF\web.xml</webXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
 
@@ -29,10 +42,10 @@
             <artifactId>ext-third</artifactId>
         </dependency>
 
-		<dependency>
-			<groupId>fr.canal.vod.sample</groupId>
-			<artifactId>sample-api</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>fr.canal.vod.sample</groupId>
+            <artifactId>sample-api</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -67,6 +80,6 @@
         </dependency>
 
 
-	</dependencies>
-	
+    </dependencies>
+
 </project>
