@@ -10,7 +10,7 @@ trait SampleWebService {
   @GET
   def jpaSample(@QueryParam("param") param : String) : Sample
 
-  @Path("/sqlsample")
+  @Path("/docsample")
   @GET
   def docSample(@QueryParam("param") param : String) : Sample
 
