@@ -4,8 +4,8 @@ import javax.ws.rs.Path
 import org.springframework.stereotype.Component
 import org.springframework.beans.factory.annotation.Autowired
 import fr.canal.vod.sample.biz.SampleBiz
-import fr.canal.vod.api.sample.dto.Sample
 import fr.canal.vod.sample.ws.SampleWebService
+import fr.canal.vod.sample.api.dto.Sample
 
 @Path("/sample")
 @Component("sampleService")

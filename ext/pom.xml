@@ -8,7 +8,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
     <packaging>pom</packaging>
-    <groupId>fr.canal.vod</groupId>
 	<artifactId>ext</artifactId>
 	<name>ext</name>
 	

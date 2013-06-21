@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 class DefaultThirdManager() extends ThirdManager {
 
   def third ( param : String) : String = {
-     param;
+     param
   }
 
 }
