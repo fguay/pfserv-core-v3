@@ -51,11 +51,11 @@ class DefaultSampleBiz() extends SampleBiz {
     val third: String = thirdManager.third(param)
     var sampleDocument : SampleDocument =  sampleDocumentRepository.findByName(param)
     if(sampleDocument == null){
-      val rootDocument : SampleDocument = sampleDocumentRepository.findById(1)
-      sampleDocuemnt = new SampleDocument()
+      val rootDocument : SampleDocument = sampleDocumentRepository.findOne("1")
+      sampleDocument = new SampleDocument()
       sampleDocument.setName(third)
       sampleDocument.setParent(rootDocument)
-      sampleDocument = sampleDocumentRepository.insert(sampleDocument)
+      sampleDocumentRepository.save(sampleDocument)
     }
     mapper.map(sampleDocument, classOf[Sample])
   }

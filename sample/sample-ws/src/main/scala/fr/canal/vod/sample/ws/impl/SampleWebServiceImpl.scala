@@ -5,21 +5,21 @@ import org.springframework.stereotype.Component
 import org.springframework.beans.factory.annotation.Autowired
 import fr.canal.vod.sample.biz.SampleBiz
 import fr.canal.vod.api.sample.dto.Sample
-import fr.canal.vod.ws.SampleWebService
+import fr.canal.vod.sample.ws.SampleWebService
 
 @Path("/sample")
 @Component("sampleService")
-class SampleWebServiceImpl extends SampleWebService(){
+class SampleWebServiceImpl extends SampleWebService{
 
   @Autowired
-  var sampleManager: SampleBiz = null
+  var sampleBiz: SampleBiz = null
 
   def jpaSample(param : String) : Sample = {
-     sampleManager.jpaSample(param);
+     sampleBiz.jpaSample(param)
   }
 
-  def sqlSample(param : String) : Sample = {
-    sampleManager.sqlSample(param);
+  def docSample(param : String) : Sample = {
+    sampleBiz.docSample(param)
   }
 
 }

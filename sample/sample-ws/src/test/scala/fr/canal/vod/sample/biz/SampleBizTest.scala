@@ -21,7 +21,7 @@ class SampleBizTest extends EntityTestCase {
 
   @Test
   def testSample() {
-    Assert.assertNotNull(sampleBiz.sample("coucou"));
-    Assert.assertNotNull(sampleBiz.sample("root").getChildSample())
+    Assert.assertNotNull(sampleBiz.jpaSample("coucou"))
+    Assert.assertNotNull(sampleBiz.jpaSample("root").getChildSample())
   }
 }

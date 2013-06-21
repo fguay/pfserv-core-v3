@@ -1,4 +1,4 @@
-package fr.canal.vod.sample.repository
+package fr.canal.vod.sample.data.repo
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.MongoTemplate
@@ -25,8 +25,8 @@ class SampleDocumentRepositoryTest {
     val sampleDocument: SampleDocument = new SampleDocument
     sampleDocument.setName("Michal")
     sampleDocument.setAge(32)
-    sampleRepository.insert(sampleDocument)
-    val savedSampleDocument: SampleDocument = sampleRepository.findById(sampleDocument.getId)
+    sampleRepository.save(sampleDocument)
+    val savedSampleDocument: SampleDocument = sampleRepository.findOne(sampleDocument.getId)
     Assert.assertEquals(sampleDocument.getName, savedSampleDocument.getName)
     Assert.assertEquals(sampleDocument.getAge, savedSampleDocument.getAge)
   }
@@ -35,8 +35,8 @@ class SampleDocumentRepositoryTest {
     val sampleDocument: SampleDocument = new SampleDocument
     sampleDocument.setName("Michal")
     sampleDocument.setAge(32)
-    sampleRepository.insert(sampleDocument)
-    Assert.assertEquals(1, sampleRepository.findAll.size)
+    sampleRepository.save(sampleDocument)
+    Assert.assertEquals(1, sampleRepository.findAll.asInstanceOf[java.util.List[SampleDocument]].size)
   }
 
   @Autowired private val sampleRepository: SampleDocumentRepository = null
