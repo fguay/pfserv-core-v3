@@ -6,8 +6,12 @@ import fr.canal.vod.api.sample.dto.Sample
 
 trait SampleWebService {
 
-  @Path("/sample")
+  @Path("/jpasample")
   @GET
-  def sample(@QueryParam("param") param : String) : Sample
+  def jpaSample(@QueryParam("param") param : String) : Sample
+
+  @Path("/sqlsample")
+  @GET
+  def sqlSample(@QueryParam("param") param : String) : Sample
 
 }

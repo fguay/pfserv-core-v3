@@ -14,8 +14,12 @@ class SampleWebServiceImpl extends SampleWebService(){
   @Autowired
   var sampleManager: SampleBiz = null
 
-  def sample(param : String) : Sample = {
-     sampleManager.sample(param);
+  def jpaSample(param : String) : Sample = {
+     sampleManager.jpaSample(param);
+  }
+
+  def sqlSample(param : String) : Sample = {
+    sampleManager.sqlSample(param);
   }
 
 }

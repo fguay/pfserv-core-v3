@@ -9,7 +9,11 @@ trait SampleBiz {
 
   @throws(classOf[TechnicalException])
   @throws(classOf[SampleException])
-  def sample( param : String)  : Sample
+  def jpaSample( param : String)  : Sample
+
+  @throws(classOf[TechnicalException])
+  @throws(classOf[SampleException])
+  def docSample( param : String)  : Sample
 
 }
 
