@@ -49,13 +49,14 @@ class DefaultSampleBiz() extends SampleBiz {
   @Transactional
   def docSample( param: String ) : Sample = {
     val third: String = thirdManager.third(param)
-    var sampleDocument : SampleDocument =  sampleDocumentRepository.findByName(param)
+    var sampleDocument : SampleDocument =  sampleDocumentRepository.findByName(third)
     if(sampleDocument == null){
-      val rootDocument : SampleDocument = sampleDocumentRepository.findById(1)
-      sampleDocuemnt = new SampleDocument()
+      val rootDocument : SampleDocument = sampleDocumentRepository.findById("1")
+      sampleDocument = new SampleDocument()
       sampleDocument.setName(third)
       sampleDocument.setParent(rootDocument)
-      sampleDocument = sampleDocumentRepository.insert(sampleDocument)
+      sampleDocumentRepository.insert(sampleDocument)
+      sampleDocument = sampleDocumentRepository.findByName(third)
     }
     mapper.map(sampleDocument, classOf[Sample])
   }

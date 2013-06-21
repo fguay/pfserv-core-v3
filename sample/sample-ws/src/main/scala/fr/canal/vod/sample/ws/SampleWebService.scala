@@ -1,4 +1,4 @@
-package fr.canal.vod.ws
+package fr.canal.vod.sample.ws
 
 import javax.ws.rs.{QueryParam, GET, Path}
 import fr.canal.vod.api.sample.dto.Sample
@@ -12,6 +12,6 @@ trait SampleWebService {
 
   @Path("/sqlsample")
   @GET
-  def sqlSample(@QueryParam("param") param : String) : Sample
+  def docSample(@QueryParam("param") param : String) : Sample
 
 }

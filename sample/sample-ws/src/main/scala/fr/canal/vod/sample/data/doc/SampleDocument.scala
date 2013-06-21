@@ -9,4 +9,6 @@ import scala.beans.BeanProperty
   @BeanProperty @Id var id: String = _
   @BeanProperty var name: String = _
   @BeanProperty var age: Integer = _
+  @BeanProperty var parent: SampleDocument = _
+
 }

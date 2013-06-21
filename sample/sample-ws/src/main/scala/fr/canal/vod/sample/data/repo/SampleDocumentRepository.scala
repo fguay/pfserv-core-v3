@@ -24,7 +24,7 @@ import fr.canal.vod.sample.data.doc.SampleDocument
   }
 
   def findByName(name: String): SampleDocument = {
-    template.findByName(name, classOf[SampleDocument])
+      return null
   }
 
 }
