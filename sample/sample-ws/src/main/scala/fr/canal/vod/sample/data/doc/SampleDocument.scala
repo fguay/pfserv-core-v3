@@ -6,9 +6,13 @@ import scala.beans.BeanProperty
 
 @Document class SampleDocument {
 
-  @BeanProperty @Id var id: String = _
+  @BeanProperty
+  @Id var id: String = _
+
   @BeanProperty var name: String = _
   @BeanProperty var age: Integer = _
+
   @BeanProperty var parent: SampleDocument = _
+  @BeanProperty var childSample: List[SampleDocument] = _
 
 }

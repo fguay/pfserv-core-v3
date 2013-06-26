@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:repository="http://www.springframework.org/schema/data/repository"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd
-       http://www.springframework.org/schema/util
-       http://www.springframework.org/schema/util/spring-util.xsd
        http://www.springframework.org/schema/data/jpa
        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-       http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd
-       http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
-       http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd
-       http://www.springframework.org/schema/context
-	   http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/data/repository
-       http://www.springframework.org/schema/data/repository/spring-repository-1.5.xsd">
+       http://www.springframework.org/schema/data/repository/spring-repository.xsd">
 
     <bean id="dbUrl" class="java.net.URI">
         <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
@@ -35,9 +24,9 @@
                   value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath()+ '?' + @dbUrl.getQuery()}"/>
         <property name="user" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
         <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
-        <property name="acquireIncrement" value="1"></property>
-        <property name="minPoolSize" value="5"></property>
-        <property name="maxPoolSize" value="50"></property>
+        <property name="acquireIncrement" value="1"/>
+        <property name="minPoolSize" value="5"/>
+        <property name="maxPoolSize" value="50"/>
         <property name="acquireRetryAttempts" value="10"/>
         <property name="preferredTestQuery" value="SELECT 1"/>
         <property name="testConnectionOnCheckin" value="true"/>
@@ -46,8 +35,9 @@
         <property name="idleConnectionTestPeriod" value="30"/>
     </bean>
 
-    <!-- MOS TODO : peut être à déplacer dans sample-ws-beans.xml -->
-    <jpa:repositories base-package="fr.canal.vod.sample.data.repo"/>
+    <jpa:repositories base-package="fr.canal.vod.sample.data.repo">
+        <repository:include-filter type="regex" expression=".*EntityRepository"/>
+    </jpa:repositories>
 
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>

@@ -1,8 +1,7 @@
 package fr.canal.vod.sample.ws
 
 import javax.ws.rs.{QueryParam, GET, Path}
-import fr.canal.vod.api.sample.dto.Sample
-
+import fr.canal.vod.sample.api.dto.Sample
 
 trait SampleWebService {
 

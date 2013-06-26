@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:repository="http://www.springframework.org/schema/data/repository"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+       http://www.springframework.org/schema/data/repository
+       http://www.springframework.org/schema/data/repository/spring-repository.xsd">
+
+    <mongo:repositories base-package="fr.canal.vod.sample.data.repo">
+        <repository:include-filter type="regex" expression=".*DocumentRepository"/>
+    </mongo:repositories>
 
     <!-- the MongoTemplate configuration -->
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-        <constructor-arg name="mongo" ref="mongo"/>
-        <constructor-arg name="databaseName" value="spring-mongodb-example"/>
+        <constructor-arg ref="mongo"/>
+        <constructor-arg value="spring-mongodb-example"/>
     </bean>
 
     <!-- Factory bean for the Mongo instance -->

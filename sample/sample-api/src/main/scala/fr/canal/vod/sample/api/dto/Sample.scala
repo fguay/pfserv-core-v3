@@ -1,14 +1,14 @@
-package fr.canal.vod.api.sample.dto
+package fr.canal.vod.sample.api.dto
 
-import java.util.List
 import scala.beans.BeanProperty
+import java.util
 
-class Sample() extends Serializable {
+class Sample extends Serializable {
 
   @BeanProperty var id : Integer  = _
 
   @BeanProperty var name : String = _
 
-  @BeanProperty var childSample : List[Sample] = _
+  @BeanProperty var childSample : util.List[Sample] = _
 
 }

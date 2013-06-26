@@ -1,4 +1,4 @@
-package fr.canal.vod.api.sample.exception
+package fr.canal.vod.sample.api.exception
 
 import fr.canal.vod.api.exception.BizException
 
