@@ -1,7 +1,6 @@
 package fr.canal.vod.sample.data.entity
 
 import javax.persistence._
-import java.util.List
 
 import scala.beans.BeanProperty
 import java.util
@@ -13,7 +12,7 @@ class SampleEntity {
     @Id
     @Column(name="ID")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @BeanProperty var id: Integer = _
+    @BeanProperty var id: String = _
 
     @Basic
     @Column(name="VALUE")

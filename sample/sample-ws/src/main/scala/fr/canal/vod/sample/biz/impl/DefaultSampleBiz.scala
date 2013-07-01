@@ -35,7 +35,7 @@ class DefaultSampleBiz() extends SampleBiz {
     val third: String = thirdManager.third(param)
     var sampleEntity : SampleEntity = sampleRepository.findByName(third)
     if(sampleEntity == null)  {
-      val rootEntity : SampleEntity = sampleRepository.findOne(1)
+      val rootEntity : SampleEntity = sampleRepository.findOne("1")
       sampleEntity = new SampleEntity()
       sampleEntity.setName(third)
       sampleEntity.setParent(rootEntity)
