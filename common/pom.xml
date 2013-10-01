@@ -16,6 +16,8 @@
 		<module>common-ws</module>
 		<module>common-test</module>
         <module>common-ext</module>
+        <module>common-akka</module>
+        <module>common-biz</module>
     </modules>
 	
 	<properties>
@@ -42,6 +44,24 @@
 				<artifactId>common-test</artifactId>
 				<version>${core.common.version}</version>
 			</dependency>
+
+            <dependency>
+                <groupId>fr.canal.vod.common</groupId>
+                <artifactId>common-biz</artifactId>
+                <version>${core.common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.canal.vod.common</groupId>
+                <artifactId>common-akka</artifactId>
+                <version>${core.common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.canal.vod.common</groupId>
+                <artifactId>common-ext</artifactId>
+                <version>${core.common.version}</version>
+            </dependency>
 			
 		</dependencies>
 	</dependencyManagement>

@@ -5,7 +5,7 @@ import java.util
 
 class Sample extends Serializable {
 
-  @BeanProperty var id : Integer  = _
+  @BeanProperty var id : String  = _
 
   @BeanProperty var name : String = _
 

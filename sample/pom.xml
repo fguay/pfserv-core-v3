@@ -13,7 +13,9 @@
 	
 	<modules>
 		<module>sample-api</module>
+        <module>sample-biz</module>
 		<module>sample-ws</module>
+        <module>sample-akka</module>
 	</modules>
 	
 	<properties>
@@ -22,11 +24,18 @@
     
 	<dependencyManagement>
 		<dependencies>
+
 			<dependency>
 				<groupId>fr.canal.vod.sample</groupId>
 				<artifactId>sample-api</artifactId>
 				<version>${core.sample.version}</version>
 			</dependency>
+
+            <dependency>
+                <groupId>fr.canal.vod.sample</groupId>
+                <artifactId>sample-biz</artifactId>
+                <version>${core.sample.version}</version>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 	

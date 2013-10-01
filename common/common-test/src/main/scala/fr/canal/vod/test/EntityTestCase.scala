@@ -9,11 +9,13 @@ import org.dbunit.util.fileloader.FlatXmlDataFileLoader
 import org.dbunit.dataset.IDataSet
 import scala.collection.mutable
 import org.springframework.beans.factory.annotation.Autowired
+import org.dbunit.ext.hsqldb.HsqldbConnection
 
 abstract class EntityTestCase extends DataSourceBasedDBTestCase {
 
   @Autowired
   var dataSource: DataSource = _
+
 
   val REQUEST: String = "select TABLE_SCHEM, TABLE_NAME from INFORMATION_SCHEMA.system_tables where table_type='TABLE'"
 
@@ -58,8 +60,6 @@ abstract class EntityTestCase extends DataSourceBasedDBTestCase {
   @throws[Exception]
   def getDataSet: IDataSet = {
     this.synchronized {
-      val s: Statement = getConnection.getConnection.createStatement()
-      s.executeQuery("SELECT * FROM SAMPLE")
       return new FlatXmlDataFileLoader().load("/" + (this.getClass.getName.replace(".", "/") +".xml"))
     }
   }
