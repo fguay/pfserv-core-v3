@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:repository="http://www.springframework.org/schema/data/repository"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+       http://www.springframework.org/schema/data/repository
+       http://www.springframework.org/schema/data/repository/spring-repository.xsd">
+
+    <mongo:repositories base-package="fr.canal.vod.sample.data.repo">
+        <repository:include-filter type="regex" expression=".*DocumentRepository"/>
+    </mongo:repositories>
+
+    <!-- the MongoTemplate configuration -->
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongo"/>
+        <constructor-arg name="databaseName" value="#{systemEnvironment['MONGO_DBNAME']}"/>
+        <constructor-arg name="userCredentials" ref="mongoCredentials"/>
+    </bean>
+
+    <!-- Factory bean for the Mongo instance -->
+    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+        <property name="host" value="#{systemEnvironment['MONGO_URL']}"/>
+        <property name="port" value="#{systemEnvironment['MONGO_PORT']}"/>
+    </bean>
+
+    <bean id="mongoCredentials"
+          class="org.springframework.data.authentication.UserCredentials">
+        <constructor-arg name="username" value="#{systemEnvironment['MONGO_USER']}" />
+        <constructor-arg name="password" value="#{systemEnvironment['MONGO_PASS']}" />
+    </bean>
+
+</beans>

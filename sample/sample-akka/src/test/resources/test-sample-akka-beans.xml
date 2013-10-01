@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+            <property name="driverClass" value="org.hsqldb.jdbcDriver"/>
+            <property name="jdbcUrl" value="jdbc:hsqldb:mem:pfsvod"/>
+            <property name="user" value="sa"/>
+            <property name="password" value=""/>
+            <property name="acquireIncrement" value="1"/>
+            <property name="minPoolSize" value="5"/>
+            <property name="maxPoolSize" value="50"/>
+            <property name="acquireRetryAttempts" value="10"/>
+            <property name="preferredTestQuery" value="SELECT 1"/>
+            <property name="testConnectionOnCheckin" value="true"/>
+            <property name="testConnectionOnCheckout" value="false"/>
+            <property name="maxIdleTime" value="50"/>
+            <property name="idleConnectionTestPeriod" value="30"/>
+        </bean>
+
+        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+            <property name="dataSource" ref="dataSource" />
+            <property name="jpaVendorAdapter">
+                <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                    <property name="generateDdl" value="true" />
+                    <property name="showSql" value="true" />
+                    <property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect"/>
+                </bean>
+            </property>
+            <property name="jpaProperties">
+                <props>
+                    <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                    <prop key="hibernate.show_sql">true</prop>
+                    <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+                </props>
+            </property>
+        </bean>
+
+
+        <bean name="fongo" class="com.foursquare.fongo.Fongo">
+            <constructor-arg value="InMemoryMongo" />
+        </bean>
+
+        <bean id="mongo" factory-bean="fongo" factory-method="getMongo" />
+
+    </beans>
+
+</beans>

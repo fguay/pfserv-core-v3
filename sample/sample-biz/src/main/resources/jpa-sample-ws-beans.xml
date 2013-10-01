@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:repository="http://www.springframework.org/schema/data/repository"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       http://www.springframework.org/schema/data/repository
+       http://www.springframework.org/schema/data/repository/spring-repository.xsd">
+
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="#{systemEnvironment['DATABASE_DRIVER']}"/>  #org.postgresql.Driver
+        <property name="jdbcUrl" value="#{systemEnvironment['DATABASE_URL']}"/>
+        <property name="user" value="#{systemEnvironment['DATABASE_USER']}"/>
+        <property name="password" value="#{systemEnvironment['DATABASE_PASS']}"/>
+        <property name="acquireIncrement" value="1"/>
+        <property name="minPoolSize" value="#{systemEnvironment['DATABASE_POOL_MIN']}"/>
+        <property name="maxPoolSize" value="#{systemEnvironment['DATABASE_POOL_MAX']}"/>
+        <property name="acquireRetryAttempts" value="10"/>
+        <property name="preferredTestQuery" value="SELECT 1"/>
+        <property name="testConnectionOnCheckin" value="true"/>
+        <property name="testConnectionOnCheckout" value="false"/>
+        <property name="maxIdleTime" value="50"/>
+        <property name="idleConnectionTestPeriod" value="30"/>
+    </bean>
+
+    <jpa:repositories base-package="fr.canal.vod.sample.data.repo">
+        <repository:include-filter type="regex" expression=".*EntityRepository"/>
+    </jpa:repositories>
+
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="false"/>
+                <property name="databasePlatform" value="#{systemEnvironment['DATABASE_DIALECT']}"/> #org.hibernate.dialect.PostgresPlusDialect
+            </bean>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">#{systemEnvironment['DATABASE_DIALECT']}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <!--  change this to 'verify' before running as a production app -->
+                <prop key="hibernate.hbm2ddl.auto">verfiy</prop>
+            </props>
+        </property>
+
+    </bean>
+
+</beans>
