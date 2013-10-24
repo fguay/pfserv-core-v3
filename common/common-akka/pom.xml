@@ -18,6 +18,11 @@
             <artifactId>akka-actor_2.10</artifactId>
         </dependency>
 
+        <!--<dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-remote_2.10</artifactId>
+        </dependency> -->
+
         <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-testkit_2.10</artifactId>

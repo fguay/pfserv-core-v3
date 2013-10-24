@@ -9,14 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 import org.springframework.stereotype.Component
+import fr.canal.vod.sample.api.akka.SampleActor
 
-trait SampleActor {
-
-  def jpaSample( param : String)  : Future[Sample]
-
-  def docSample( param : String)  : Future[Sample]
-
-}
 
 @Component("sampleActor")
 class SampleActorImpl extends SampleActor {

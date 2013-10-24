@@ -39,6 +39,11 @@
         </property>
     </bean>
 
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongo"/>
+        <constructor-arg name="databaseName" value="test"/>
+    </bean>
+
 
     <bean name="fongo" class="com.foursquare.fongo.Fongo">
         <constructor-arg value="InMemoryMongo" />

@@ -16,7 +16,7 @@
 
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="#{systemEnvironment['DATABASE_DRIVER']}"/>  #org.postgresql.Driver
+        <property name="driverClass" value="#{systemEnvironment['DATABASE_DRIVER']}"/>
         <property name="jdbcUrl" value="#{systemEnvironment['DATABASE_URL']}"/>
         <property name="user" value="#{systemEnvironment['DATABASE_USER']}"/>
         <property name="password" value="#{systemEnvironment['DATABASE_PASS']}"/>
@@ -49,7 +49,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="false"/>
-                <property name="databasePlatform" value="#{systemEnvironment['DATABASE_DIALECT']}"/> #org.hibernate.dialect.PostgresPlusDialect
+                <property name="databasePlatform" value="#{systemEnvironment['DATABASE_DIALECT']}"/>
             </bean>
         </property>
         <property name="jpaProperties">
@@ -57,7 +57,7 @@
                 <prop key="hibernate.dialect">#{systemEnvironment['DATABASE_DIALECT']}</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <!--  change this to 'verify' before running as a production app -->
-                <prop key="hibernate.hbm2ddl.auto">verfiy</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
             </props>
         </property>
 

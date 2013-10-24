@@ -8,16 +8,16 @@ Description
 Config
 -----------
 
--MONGO_DBNAME=DB
--MONGO_URL=localhost
--MONGO_PORT=
--MONGO_USER=
--MANGO_PASS=
+export MONGO_DBNAME=DB
+export MONGO_URL=localhost
+export MONGO_PORT=27017
+export MONGO_USER=sample
+export MANGO_PASS=sample
 
--DATABASE_DRIVER=org.postgresql.Driver
--DATABASE_URL=jdbc:postgresql://localhost:5432/vvins
--DATEBASE_USER=core
--DATABASE_PASS=212019
--DATABASE_POOL_MIN=10
--DATABASE_POOL_MAX=50
--DATABASE_DIALECT=org.hibernate.dialect.PostgresPlusDialect
+export DATABASE_DRIVER=org.postgresql.Driver
+export DATABASE_URL=jdbc:postgresql://localhost:5432/sample
+export DATEBASE_USER=sample
+export DATABASE_PASS=sample
+export DATABASE_POOL_MIN=10
+export DATABASE_POOL_MAX=50
+export DATABASE_DIALECT=org.hibernate.dialect.PostgresPlusDialect

@@ -19,7 +19,6 @@ public class ExtSpringMongoDbRule extends MongoDbRule {
 
     private PropertyGetter<ApplicationContext> propertyGetter = new ExtPropertyGetter<ApplicationContext>();
 
-
     public ExtSpringMongoDbRule(String databaseName){
         this(MongoDbConfigurationBuilder.mongoDb().databaseName(databaseName).build());
     }
