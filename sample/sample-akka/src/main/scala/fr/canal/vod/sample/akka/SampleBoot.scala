@@ -4,36 +4,21 @@ import scala.concurrent.duration._
 
 import akka.kernel.Bootable
 import akka.actor._
-import akka.routing.RoundRobinRouter
-import org.springframework.context.support.ClassPathXmlApplicationContext
-import fr.canal.vod.sample.api.akka.SampleActor
-import fr.canal.vod.akka.DefaultSupervisor
-import com.typesafe.config.ConfigFactory
+import org.springframework.scala.context.function.{FunctionalConfiguration, FunctionalConfigApplicationContext}
 
 class SampleBoot extends Bootable {
 
-   val nbOfInstances : Int = 5
+  implicit val springCtx = FunctionalConfigApplicationContext(classOf[SampleConfig])
+  val system = springCtx.getBean(classOf[ActorSystem])
 
-   val system = ActorSystem("sample", ConfigFactory.load.getConfig("sample"))
-   val springCtx = new ClassPathXmlApplicationContext("sample-biz-beans.xml")
-   val actor : SampleActorImpl = springCtx.getBean("sampleActor").asInstanceOf[SampleActorImpl]
+  def startup = {
+     println("Started Service : Sample")
+  }
 
-   val sampleRooter : SampleActor = TypedActor(system).typedActorOf(TypedProps(classOf[SampleActor], actor).withDispatcher("sample-dispatcher"), "sample")
-   val supervisor = system.actorOf(Props[DefaultSupervisor], "supervisor")
-
-
-    def startup = {
-      // Create the 'greeter' actor
-     supervisor ! sampleRooter
-     println("Started Actor : " + TypedActor(system).getActorRefFor(sampleRooter).path)
-     println("Started Supervisor : " + supervisor.path)
-
-
-
-    }
-
-    def shutdown = {
+  def shutdown = {
       system.shutdown()
-    }
+  }
+
+
 
 }

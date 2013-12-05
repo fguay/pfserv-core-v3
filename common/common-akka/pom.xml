@@ -18,10 +18,10 @@
             <artifactId>akka-actor_2.10</artifactId>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-remote_2.10</artifactId>
-        </dependency> -->
+        </dependency>
 
         <dependency>
             <groupId>com.typesafe.akka</groupId>
@@ -43,6 +43,17 @@
             <groupId>fr.canal.vod.common</groupId>
             <artifactId>common-api</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.scala</groupId>
+            <artifactId>spring-scala</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
 
     </dependencies>
 

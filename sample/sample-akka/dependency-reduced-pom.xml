@@ -9,60 +9,106 @@
   <groupId>fr.canal.vod.sample</groupId>
   <artifactId>sample-akka</artifactId>
   <name>sample-akka</name>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>2.1</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <filters>
-                <filter>
-                  <artifact>com.typesafe.akka:*</artifact>
-                  <excludes>
-                    <exclude>**</exclude>
-                  </excludes>
-                </filter>
-                <filter>
-                  <artifact>com.typesafe.config:*</artifact>
-                  <excludes>
-                    <exclude>**</exclude>
-                  </excludes>
-                </filter>
-                <filter>
-                  <artifact>org.scala-lang:*</artifact>
-                  <excludes>
-                    <exclude>**</exclude>
-                  </excludes>
-                </filter>
-                <filter>
-                  <artifact>*:*</artifact>
-                </filter>
-              </filters>
-              <transformers>
-                <transformer>
-                  <resource>META-INF/spring.handlers</resource>
-                </transformer>
-                <transformer>
-                  <resource>META-INF/spring.schemas</resource>
-                </transformer>
-              </transformers>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>2.1</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <transformers>
+                    <transformer>
+                      <resource>META-INF/spring.handlers</resource>
+                    </transformer>
+                    <transformer>
+                      <resource>META-INF/spring.schemas</resource>
+                    </transformer>
+                    <transformer>
+                      <resource>reference.conf</resource>
+                    </transformer>
+                  </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>2.1</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <filters>
+                    <filter>
+                      <artifact>postgresql:*</artifact>
+                      <excludes>
+                        <exclude>**</exclude>
+                      </excludes>
+                    </filter>
+                    <filter>
+                      <artifact>com.typesafe.akka:*</artifact>
+                      <excludes>
+                        <exclude>**</exclude>
+                      </excludes>
+                    </filter>
+                    <filter>
+                      <artifact>com.typesafe.config:*</artifact>
+                      <excludes>
+                        <exclude>**</exclude>
+                      </excludes>
+                    </filter>
+                    <filter>
+                      <artifact>org.scala-lang:*</artifact>
+                      <excludes>
+                        <exclude>**</exclude>
+                      </excludes>
+                    </filter>
+                    <filter>
+                      <artifact>*:*</artifact>
+                    </filter>
+                  </filters>
+                  <transformers>
+                    <transformer>
+                      <resource>META-INF/spring.handlers</resource>
+                    </transformer>
+                    <transformer>
+                      <resource>META-INF/spring.schemas</resource>
+                    </transformer>
+                    <transformer>
+                      <resource>reference.conf</resource>
+                    </transformer>
+                  </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <version>3.2.1.RELEASE</version>
+      <version>3.2.4.RELEASE</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -80,7 +126,7 @@
     <dependency>
       <groupId>com.typesafe.akka</groupId>
       <artifactId>akka-testkit_2.10</artifactId>
-      <version>2.2.1</version>
+      <version>2.2.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
